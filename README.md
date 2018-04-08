@@ -1,2 +1,2 @@
 # Algorithm
-Implement introduction of algorithms by C++
+Implement introduction of algorithms
