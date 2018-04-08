@@ -2,12 +2,12 @@
 #include<stdlib.h>
 void merge(int *arr, int p, int q, int r)
 {
-	int n1 = q - p + 1;		// ×óÊı×é³¤¶È
-	int n2 = r - q;			// ÓÒÊı×é³¤¶È
-	int *L = (int *)malloc(sizeof(int)*n1);		// ¿ª±Ù¿Õ¼ä
+	int n1 = q - p + 1;		// å·¦æ•°ç»„é•¿åº¦
+	int n2 = r - q;			// å³æ•°ç»„é•¿åº¦
+	int *L = (int *)malloc(sizeof(int)*n1);		// å¼€è¾Ÿç©ºé—´
 	int *R = (int *)malloc(sizeof(int)*n2);
 
-	// ·Ö±ğ¸³Öµ
+	// åˆ†åˆ«èµ‹å€¼
 	for (int i = 0; i < n1; i++)
 		L[i] = arr[p + i];
 	for (int i = 0; i < n2; i++)
@@ -17,8 +17,10 @@ void merge(int *arr, int p, int q, int r)
 
 	for (int k = p; k <= r; k++)
 	{
-		if (j == n2 || i != n1&&L[i] < R[j])	// ÓÒÊı×éÎª¿Õ »òÕß×óÊı×é²»¿ÕÊ±£¬
-		{										// ×óĞ¡ÓÚÓÒµÄÇé¿ö ×óÊı×éÔªËØ¸øÊı×é¸³Öµ
+		/* å³æ•°ç»„ä¸ºç©º æˆ–è€…å·¦æ•°ç»„ä¸ç©ºæ—¶ï¼Œå·¦å°äºå³çš„æƒ…å†µ
+		   å·¦æ•°ç»„å½“å‰å…ƒç´ ç»™åŸæ•°ç»„èµ‹å€¼ */
+		if (j == n2 || i != n1&&L[i] < R[j])	
+		{					
 			arr[k] = L[i];
 			i++;
 		}
@@ -35,7 +37,7 @@ void mergeSort(int *arr, int p, int r)
 {
 	if (p < r)
 	{
-		int q = (p + r) / 2;	// ÖĞ¼äÖµ
+		int q = (p + r) / 2;	// ä¸­é—´å€¼
 		mergeSort(arr, p, q);
 		mergeSort(arr, q + 1, r);
 		merge(arr, p, q, r);
